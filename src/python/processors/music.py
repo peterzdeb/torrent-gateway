@@ -8,4 +8,4 @@ class MP3Processor(BaseProcessor):
     def process(self, path, filename):
         src_path = os.path.join(path, filename)
         dest_path = os.path.join(self.conf.get('targets', 'music'), filename)
-        self.copy_files(src_path, dest_path)
+        self.link_files(src_path, dest_path)

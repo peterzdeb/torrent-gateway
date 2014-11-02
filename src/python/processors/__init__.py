@@ -15,6 +15,16 @@ class BaseProcessor(object):
     def process(self, path):
         raise NotImplementedError
 
+    def link_files(self, src, dst):
+        try:
+            if os.path.isdir(src):
+                os.link(src, dst)
+            else:
+                shutil.copyfile(src, dst)
+            self.log.info('Torrent "%s" transferred successfully' % dst)
+        except Exception as err:
+            self.log.error('Cannot transfer torrent files: %s' % err)
+
     def copy_files(self, src, dst):
         try:
             if os.path.isdir(src):
@@ -22,7 +32,7 @@ class BaseProcessor(object):
             else:
                 shutil.copyfile(src, dst)
             self.log.info('Torrent "%s" transferred successfully' % dst)
-        except FileExistsError as err:
-            self.log.error('Cannot transfer torrent files: %s' % err)
         except AttributeError as err:
             self.log.error('Torrent files ("%s) transferred with errors: %s' % (dst, err))
+        except Exception as err:
+            self.log.error('Cannot transfer torrent files: %s' % err)
