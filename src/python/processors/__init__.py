@@ -17,11 +17,7 @@ class BaseProcessor(object):
 
     def link_files(self, src, dst):
         try:
-            if os.path.isdir(src):
-                os.link(src, dst)
-            else:
-                shutil.copyfile(src, dst)
-            self.log.info('Torrent "%s" transferred successfully' % dst)
+            os.link(src, dst)
         except Exception as err:
             self.log.error('Cannot transfer torrent files: %s' % err)
 
