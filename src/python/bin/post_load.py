@@ -28,9 +28,9 @@ if __name__ == '__main__':
 
     env = os.environ
     try:
-        torrent_file = env.get('TR_TORRENT_NAME', '')
         #torrent_file = '1996 - \udcd0\udca4\udcd0\udcb0\udcd0\udcbd\udcd1\udc82\udcd0\udcbe\udcd0\udcbc-2 - \udcd0\udc97\udcd0\udcbe\udcd1\udc80\udcd1\udc8f\udcd0\udcbd\udcd1\udc96 \udcd0\udcb2\udcd1\udc96\udcd0\udcb9\udcd0\udcbd\udcd0\udcb8'
         torrent_file = 'Aut\xf3mata (2014) BDRip 1080p [UKR_ENG] [Hurtom].mkv'
+        torrent_file = env.get('TR_TORRENT_NAME', torrent_file)
         torrent_file = remove_xdc(torrent_file)
 
         if not torrent_file:
