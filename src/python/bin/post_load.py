@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     env = os.environ
     try:
-        if env._data.has_key('TR_TORRENT_NAME'):
+        if 'TR_TORRENT_NAME' in env:
             torrent_file = env.get('TR_TORRENT_NAME', torrent_file)
             torrent_file = remove_xdc(torrent_file)
         if len(sys.argv) == 3:
