@@ -27,11 +27,13 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
 
     env = os.environ
+    torrent_file = ''
     try:
         if 'TR_TORRENT_NAME' in env:
             torrent_file = env.get('TR_TORRENT_NAME', torrent_file)
             torrent_file = remove_xdc(torrent_file)
         if len(sys.argv) == 4:
+            logging.debug('parsing args: %s', str(sys.argv))
             (_, torrent_id, torrent_name, torrent_file) = sys.argv
         else:
             #torrent_file = '1996 - \udcd0\udca4\udcd0\udcb0\udcd0\udcbd\udcd1\udc82\udcd0\udcbe\udcd0\udcbc-2 - \udcd0\udc97\udcd0\udcbe\udcd1\udc80\udcd1\udc8f\udcd0\udcbd\udcd1\udc96 \udcd0\udcb2\udcd1\udc96\udcd0\udcb9\udcd0\udcbd\udcd0\udcb8'
