@@ -33,7 +33,7 @@ if __name__ == '__main__':
             torrent_file = env.get('TR_TORRENT_NAME', torrent_file)
             torrent_file = remove_xdc(torrent_file)
         if len(sys.argv) >= 4:
-            logging.debug('parsing args: %s', str(sys.argv))
+            logger.debug('parsing args: %s', str(sys.argv))
             torrent_id = sys.argv[1]
             torrent_name = ' '.join(sys.argv[2:-1])
             torrent_dir = sys.argv[-1]
