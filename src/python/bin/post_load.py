@@ -22,7 +22,8 @@ from processors.file_analyzer import FileAnalyzer
 
 if __name__ == '__main__':
     logging.basicConfig(filename='/var/log/torrent_gw.log',
-                        format='%(asctime)-15s %(name)s %(levelname)s %(message)s')
+                        format='%(asctime)-15s %(name)s %(levelname)s %(message)s',
+                        level=logging.DEBUG)
     logger = logging.getLogger('gateway')
     logger.setLevel(logging.DEBUG)
 
