@@ -38,7 +38,7 @@ if __name__ == '__main__':
             torrent_id = sys.argv[1]
             torrent_name = ' '.join(sys.argv[2:-1])
             torrent_dir = sys.argv[-1]
-            torrent_file = os.path.join(torrent_dir, torrent_name)
+            torrent_file = torrent_name
         else:
             #torrent_file = '1996 - \udcd0\udca4\udcd0\udcb0\udcd0\udcbd\udcd1\udc82\udcd0\udcbe\udcd0\udcbc-2 - \udcd0\udc97\udcd0\udcbe\udcd1\udc80\udcd1\udc8f\udcd0\udcbd\udcd1\udc96 \udcd0\udcb2\udcd1\udc96\udcd0\udcb9\udcd0\udcbd\udcd0\udcb8'
             #torrent_file = 'Aut\xf3mata (2014) BDRip 1080p [UKR_ENG] [Hurtom].mkv'
@@ -56,3 +56,5 @@ if __name__ == '__main__':
             logger.exception('Error occurred when downloading file "%s": %s' % (torrent_file, err))
         except Exception as err:
             logger.exception('Critical internal server error: %s' % err)
+        sys.exit(1)
+    sys.exit(0)
