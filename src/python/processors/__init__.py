@@ -17,12 +17,14 @@ class BaseProcessor(object):
 
     def link_files(self, src, dst):
         try:
+            self.log.debug('Linking file %s -> %s' % (src, dst))
             os.link(src, dst)
         except Exception as err:
             self.log.error('Cannot transfer torrent files: %s' % err)
 
     def copy_files(self, src, dst):
         try:
+            self.log.debug('Copying file %s -> %s' % (src, dst))
             if os.path.isdir(src):
                 shutil.copytree(src, dst)
             else:
