@@ -32,7 +32,7 @@ if __name__ == '__main__':
         if 'TR_TORRENT_NAME' in env:
             torrent_file = env.get('TR_TORRENT_NAME', torrent_file)
             torrent_file = remove_xdc(torrent_file)
-        if len(sys.argv) == 4:
+        if len(sys.argv) > 1:
             logging.debug('parsing args: %s', str(sys.argv))
             (_, torrent_id, torrent_name, torrent_file) = sys.argv
         else:
