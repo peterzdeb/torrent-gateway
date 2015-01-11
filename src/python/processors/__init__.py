@@ -17,8 +17,21 @@ class BaseProcessor(object):
 
     def link_files(self, src, dst):
         try:
-            self.log.debug('Linking file %s -> %s' % (src, dst))
-            os.link(src, dst)
+            self.log.info('Trying to link path %s -> %s' % (src, dst))
+            if os.path.isdir(src):
+                self.log.debug('Creating directory for linking files: %s', dst)
+                os.mkdir(dst)
+                self.log.debug('Walking through files to link from dir: %s', src)
+                for curr_dir, dirs, names, in os.walk(src):
+                    dest_subdir = os.path.join(dst, currdir)
+                    self.log.debug('Creating subdir for linking files: %s', dest_subdir)
+                    os.mkdir(dest_subdir)
+                    for name in names:
+                        os.link(os.path.join(src, curr_dir, name),
+                                os.path.join(dst, curr_dir, name))
+            else:
+                self.log.info('Linking file %s -> %s' % (src, dst))
+                os.link(src, dst)
         except Exception as err:
             self.log.error('Cannot transfer torrent files: %s' % err)
 
