@@ -23,7 +23,7 @@ class BaseProcessor(object):
                 os.mkdir(dst)
                 self.log.debug('Walking through files to link from dir: %s', src)
                 for curr_dir, dirs, names, in os.walk(src):
-                    dest_subdir = os.path.join(dst, currdir)
+                    dest_subdir = os.path.join(dst, curr_dir)
                     self.log.debug('Creating subdir for linking files: %s', dest_subdir)
                     os.mkdir(dest_subdir)
                     for name in names:
