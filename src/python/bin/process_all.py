@@ -29,7 +29,7 @@ if __name__ == '__main__':
             logger.error('Torrent error - no torrents dir specified')
             sys.exit(1)
 
-        for torrent_file in os.listdir(torrents_dir)
+        for torrent_file in os.listdir(torrents_dir):
             logger.info('Start processing file: %s' % torrent_file)
             analyzer = FileAnalyzer(env.get('TR_TORRENT_DIR', '/media/Disk-D/Torrents'))
             analyzer.process_file(torrent_file)
