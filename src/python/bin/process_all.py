@@ -25,7 +25,7 @@ if __name__ == '__main__':
         else:
             torrents_dir = ''
 
-        if not torrent_dir:
+        if not torrents_dir:
             logger.error('Torrent error - no torrents dir specified')
             sys.exit(1)
 
