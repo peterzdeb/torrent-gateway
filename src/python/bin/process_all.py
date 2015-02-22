@@ -19,13 +19,13 @@ if __name__ == '__main__':
     env = os.environ
     torrent_file = ''
     try:
-        if len(sys.argv) >= 1:
+        if len(sys.argv) > 1:
             logger.debug('parsing args: %s', str(sys.argv))
             torrents_dir = sys.argv[1:]
         else:
             torrents_dir = ''
 
-        if not torrent_file:
+        if not torrent_dir:
             logger.error('Torrent error - no torrents dir specified')
             sys.exit(1)
 
