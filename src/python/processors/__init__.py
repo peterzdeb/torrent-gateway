@@ -16,19 +16,32 @@ class BaseProcessor(object):
         raise NotImplementedError
 
     def link_files(self, src, dst):
+        base_src = os.path.split(src)[0]
+        base_dst = os.path.split(dst)[0]
+        def __process_subdir(sub_path):
+            for cdir, dirs, names, in os.walk(os.path.join(src, sub_path)):
+                curr_dir = cdir.replace(base_src, '').replace('/', '')
+                for subdir in dirs:
+                    dest_subdir = os.path.join(dst, sub_path, subdir)
+                    if not os.path.exists(dest_subdir):
+                        self.log.debug('Creating subdir for linking files: %s', dest_subdir)
+                        os.mkdir(dest_subdir)
+
+                    __process_subdir(os.path.join(sub_path, subdir))
+
+                for name in names:
+                    os.link(os.path.join(base_src, curr_dir, name),
+                            os.path.join(base_dst, curr_dir, name))
+
+
         try:
             self.log.info('Trying to link path %s -> %s' % (src, dst))
             if os.path.isdir(src):
-                self.log.debug('Creating directory for linking files: %s', dst)
-                os.mkdir(dst)
+                if not os.path.exists(dst):
+                    self.log.debug('Creating directory for linking files: %s', dst)
+                    os.mkdir(dst)
                 self.log.debug('Walking through files to link from dir: %s', src)
-                for curr_dir, dirs, names, in os.walk(src):
-                    dest_subdir = os.path.join(dst, curr_dir)
-                    self.log.debug('Creating subdir for linking files: %s', dest_subdir)
-                    os.mkdir(dest_subdir)
-                    for name in names:
-                        os.link(os.path.join(src, curr_dir, name),
-                                os.path.join(dst, curr_dir, name))
+                __process_subdir('')
             else:
                 self.log.info('Linking file %s -> %s' % (src, dst))
                 os.link(src, dst)
