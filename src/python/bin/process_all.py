@@ -21,7 +21,7 @@ if __name__ == '__main__':
     try:
         if len(sys.argv) > 1:
             logger.debug('parsing args: %s', str(sys.argv))
-            torrents_dir = sys.argv[1:]
+            torrents_dir = os.path.join(*sys.argv[1:])
         else:
             torrents_dir = ''
 
